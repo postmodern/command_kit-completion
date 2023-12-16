@@ -89,7 +89,7 @@ module CommandKit
       #
       def define
         namespace :command_kit do
-          task :completion do
+          file(@output_file) do
             completions  = Completely::Completions.new(completion_rules)
             shell_script = if @wrap_function
                              completions.wrap_function(*@function_name)
@@ -99,6 +99,8 @@ module CommandKit
 
             File.write(@output_file,shell_script)
           end
+
+          task :completion => @output_file
         end
       end
 
