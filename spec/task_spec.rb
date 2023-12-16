@@ -218,6 +218,12 @@ describe CommandKit::Completion::Task do
     end
 
     context "when the command class includes CommandKit::Commands" do
+      context "but when one of the commands does not define any options" do
+        it "must omit the command from the completion rules"
+      end
+
+      context "and when one of the sub-commands also includes CommandKit::Commands" do
+      end
     end
   end
 
