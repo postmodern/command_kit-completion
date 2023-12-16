@@ -100,6 +100,7 @@ module CommandKit
             File.write(@output_file,shell_script)
           end
 
+          desc 'Generates the shell completions'
           task :completion => @output_file
         end
       end
