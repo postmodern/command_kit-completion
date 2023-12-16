@@ -135,6 +135,7 @@ module CommandKit
         command_name = command_class.command_name
         completions  = {command_name => []}
 
+        # options
         if command_class.include?(CommandKit::Options)
           # add all long option flags
           command_class.options.each_value do |option|
@@ -142,6 +143,8 @@ module CommandKit
 
             if option.value
               if (option_value_completion = USAGE_COMPLETIONS[option.value.usage])
+                # add a special rule if the option's value USAGE maps to a
+                # 'completely' completion keyword (ex: `FILE` -> `<file>`).
                 completions["#{command_name}*#{option.long}"] = [
                   option_value_completion
                 ]
@@ -150,6 +153,7 @@ module CommandKit
           end
         end
 
+        # sub-commands
         if command_class.include?(CommandKit::Commands)
           command_class.commands.each do |subcommand_name,subcommand|
             # add all sub-command names
@@ -182,6 +186,7 @@ module CommandKit
         completion_rules = completion_rules_for(load_class)
 
         if @input_file
+          # load the additional rules from the input file
           additional_completion_rules = YAML.load_file(@input_file)
 
           # merge the additional completion rules
