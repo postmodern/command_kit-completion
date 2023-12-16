@@ -101,6 +101,8 @@ module CommandKit
 
         desc 'Generates the shell completions'
         task 'command_kit:completion' => @output_file
+
+        task :completion => 'command_kit:completion'
       end
 
       #
