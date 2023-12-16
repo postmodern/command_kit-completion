@@ -31,6 +31,12 @@ module CommandKit
       # @return [String, nil]
       attr_reader :input_file
 
+      # Specifies whether the shell completion logic should be wrapped in a
+      # function.
+      #
+      # @return [Boolean]
+      attr_reader :wrap_function
+
       # Optional function name to wrap the shell completions within.
       #
       # @return [String, nil]
@@ -72,16 +78,6 @@ module CommandKit
         @function_name = function_name
 
         define
-      end
-
-      #
-      # Specifies whether the shell completion logic should be wrapped in a
-      # function.
-      #
-      # @return [Boolean]
-      #
-      def wrap_function?
-        @wrap_function
       end
 
       #
