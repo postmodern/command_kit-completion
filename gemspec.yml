@@ -1,0 +1,27 @@
+name: command_kit-completion
+summary: Generate shell completions for command_kit commands
+description:
+  Adds a rake task that generates shell completion rules for a command_kit CLI.
+  The rake task loads the CLI class and uses the 'completely' library to
+  generate shell completion rules.
+
+license: MIT
+authors: Postmodern
+email: postmodern.mod3@gmail.com
+homepage: https://github.com/postmodern/command_kit-completion#readme
+
+metadata:
+  documentation_uri: https://rubydoc.info/gems/command_kit-completion
+  source_code_uri:   https://github.com/postmodern/command_kit-completion
+  bug_tracker_uri:   https://github.com/postmodern/command_kit-completion/issues
+  changelog_uri:     https://github.com/postmodern/command_kit-completion/blob/main/ChangeLog.md
+  rubygems_mfa_required: 'true'
+
+required_ruby_version: ">= 3.0.0"
+
+dependencies:
+  command_kit: ~> 0.1
+  completely: ~> 0.6
+
+development_dependencies:
+  bundler: ~> 2.0

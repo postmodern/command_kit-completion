@@ -1,0 +1,8 @@
+/.bundle
+/.yardoc/
+/Gemfile.lock
+/coverage/
+/example-completion.sh
+/doc/
+/pkg/
+/vendor/cache/*.gem
