@@ -116,7 +116,8 @@ module CommandKit
       USAGE_COMPLETIONS = {
         'FILE' => '<file>',
         'DIR'  => '<directory>',
-        'HOST' => '<hostname>'
+        'HOST' => '<hostname>',
+        'USER' => '<user>'
       }
 
       #
