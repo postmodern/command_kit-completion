@@ -23,7 +23,7 @@ task :doc => :yard
 namespace :example do
   require 'command_kit/completion/task'
   CommandKit::Completion::Task.new(
-    file:        './examples/cli',
+    class_file:  './examples/cli',
     class_name:  'Foo::CLI',
     output_file: 'example-completion.sh'
   )
