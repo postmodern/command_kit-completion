@@ -88,21 +88,19 @@ module CommandKit
       # Defines the `command_kit:completion` task.
       #
       def define
-        namespace :command_kit do
-          task :completion do
-            completions  = Completely::Completions.new(completion_rules)
-            shell_script = if @wrap_function
-                             completions.wrap_function(*@function_name)
-                           else
-                             completions.script
-                           end
+        task(@output_file) do
+          completions  = Completely::Completions.new(completion_rules)
+          shell_script = if @wrap_function
+                           completions.wrap_function(*@function_name)
+                         else
+                           completions.script
+                         end
 
-            File.write(@output_file,shell_script)
-          end
+          File.write(@output_file,shell_script)
         end
 
         desc 'Generates the shell completions'
-        file @output_file => 'command_kit:completion'
+        task 'command_kit:completion' => @output_file
       end
 
       #
