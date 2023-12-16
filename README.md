@@ -19,7 +19,7 @@ the shell completion rules.
 ```ruby
 require 'command_kit/completion/task'
 CommandKit::Completion::Task.new(
-  file:        './examples/cli',
+  class_file:  './examples/cli',
   class_name:  'Foo::CLI',
   output_file: 'completion.sh'
 )

@@ -14,7 +14,7 @@ module CommandKit
       # The file that the command_kit CLI is defined in.
       #
       # @return [String]
-      attr_reader :file
+      attr_reader :class_file
 
       # The class name of the command_kit CLI.
       #
@@ -39,7 +39,7 @@ module CommandKit
       #
       # Initializes the `command_kit:completion` task.
       #
-      # @param [String] file
+      # @param [String] class_file
       #   The file that contains the comand_kit CLI.
       #
       # @param [String] class_name
@@ -57,13 +57,13 @@ module CommandKit
       # @param [String] output
       #   The output file to write the completion rules to.
       #
-      def initialize(file: ,
+      def initialize(class_file: ,
                      class_name: ,
                      output_file: ,
                      input_file:    nil,
                      wrap_function: false,
                      function_name: nil)
-        @file        = file
+        @class_file  = class_file
         @class_name  = class_name
         @output_file = output_file
 
@@ -109,7 +109,7 @@ module CommandKit
       # @return [Class]
       #
       def load_class
-        require(@file)
+        require(@class_file)
         Object.const_get(@class_name)
       end
 
