@@ -136,7 +136,7 @@ module CommandKit
       #   The completion rules for the command class and any sub-commands.
       #
       def completion_rules_for(command_class)
-        command_name = command_class.command_name
+        command_name = command_class.command_name.tr('_','-')
         completions  = {command_name => []}
 
         # options
