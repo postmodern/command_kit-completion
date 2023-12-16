@@ -112,6 +112,13 @@ module CommandKit
         Object.const_get(@class_name)
       end
 
+      # Mapping of command usage strings to completely `<keyword>`s.
+      USAGE_COMPLETIONS = {
+        'FILE' => '<file>',
+        'DIR'  => '<directory>',
+        'HOST' => '<hostname>'
+      }
+
       #
       # Generates the completion rules for the given [command_kit] command
       # class.
@@ -132,6 +139,14 @@ module CommandKit
           # add all long option flags
           command_class.options.each_value do |option|
             completions[command_name] << option.long
+
+            if option.value
+              if (option_value_completion = USAGE_COMPLETIONS[option.value.usage])
+                completions["#{command_name}*#{option.long}"] = [
+                  option_value_completion
+                ]
+              end
+            end
           end
         end
 
