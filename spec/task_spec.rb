@@ -71,7 +71,7 @@ describe CommandKit::Completion::Task do
     context "when given a simple CommandKit::Command class" do
       class TestBasicCommand < CommandKit::Command
 
-        command_name :test
+        command_name 'test'
 
         option :foo, desc: 'Foo option'
 
@@ -95,7 +95,7 @@ describe CommandKit::Completion::Task do
       context "when one of the options accepts a FILE value" do
         class TestCommandWithFILEOption < CommandKit::Command
 
-          command_name :test
+          command_name 'test'
 
           option :foo, desc: 'Foo option'
 
@@ -122,7 +122,7 @@ describe CommandKit::Completion::Task do
       context "when one of the options accepts a DIR value" do
         class TestCommandWithDIROption < CommandKit::Command
 
-          command_name :test
+          command_name 'test'
 
           option :foo, desc: 'Foo option'
 
@@ -149,7 +149,7 @@ describe CommandKit::Completion::Task do
       context "when one of the options accepts a HOST value" do
         class TestCommandWithHOSTOption < CommandKit::Command
 
-          command_name :test
+          command_name 'test'
 
           option :foo, desc: 'Foo option'
 
@@ -176,7 +176,7 @@ describe CommandKit::Completion::Task do
       context "when one of the options accepts a USER value" do
         class TestCommandWithUSEROption < CommandKit::Command
 
-          command_name :test
+          command_name 'test'
 
           option :foo, desc: 'Foo option'
 
@@ -206,7 +206,7 @@ describe CommandKit::Completion::Task do
           include CommandKit::Usage
           include CommandKit::Arguments
 
-          command_name :test
+          command_name 'test'
         end
 
         let(:command_class) { TestCommandWithoutOptions }
