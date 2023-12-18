@@ -31,6 +31,12 @@ CommandKit::Completion::Task.new(
 )
 ```
 
+## Synopsis
+
+```shell
+rake command_kit:completion
+```
+
 ## Requirements
 
 * [Ruby] >= 3.0.0
