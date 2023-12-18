@@ -1,3 +1,8 @@
+### 0.1.1 / 2023-12-18
+
+* Ensure that the parent directory of the output file exists before writing to
+  the output file.
+
 ### 0.1.0 / 2023-12-18
 
 * Initial release:
