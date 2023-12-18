@@ -6,6 +6,7 @@ require 'command_kit/options'
 require 'command_kit/commands'
 require 'completely'
 require 'yaml'
+require 'fileutils'
 
 module CommandKit
   module Completion
@@ -89,6 +90,7 @@ module CommandKit
                            completions.script
                          end
 
+          FileUtils.mkdir_p(File.dirname(@output_file))
           File.write(@output_file,shell_script)
         end
 
