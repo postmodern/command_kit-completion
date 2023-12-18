@@ -52,16 +52,13 @@ module CommandKit
       #   The class name of the command_kit CLI.
       #
       # @param [String] output_file
-      #   The output file to write the completions to.
+      #   The output file to write the completions rules to.
       #
       # @param [String, nil] input_file
       #   The optional YAML input file of additional completion rules.
       #   See [completely examples] for YAML syntax.
       #
       #   [completely examples]: https://github.com/DannyBen/completely?tab=readme-ov-file#using-the-completely-command-line
-      #
-      # @param [String] output
-      #   The output file to write the completion rules to.
       #
       def initialize(class_file: ,
                      class_name: ,
@@ -102,7 +99,7 @@ module CommandKit
       end
 
       #
-      # Loads the {#class_name} from the {#file}.
+      # Loads the {#class_name} from the {#class_file}.
       #
       # @return [Class]
       #
