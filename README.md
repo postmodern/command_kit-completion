@@ -14,6 +14,12 @@ Adds a rake task that generates shell completion rules for a [command_kit] CLI.
 The rake task loads the CLI class and uses the [completely] library to generate
 the shell completion rules.
 
+## Features
+
+* Supports automatically generating completion rules from a [command_kit] CLI
+  class's options and sub-commands.
+* Supports loading additional completion rules from a YAML file.
+
 ## Examples
 
 ```ruby
@@ -24,12 +30,6 @@ CommandKit::Completion::Task.new(
   output_file: 'completion.sh'
 )
 ```
-
-## Features
-
-* Supports automatically generating completion rules from a [command_kit] CLI
-  class's options and sub-commands.
-* Supports loading additional completion rules from a YAML file.
 
 ## Requirements
 
