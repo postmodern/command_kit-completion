@@ -219,6 +219,140 @@ describe CommandKit::Completion::Task do
       end
     end
 
+    context "when the command class includes CommandKit::Arguments" do
+      context "and has at least one argument" do
+        context "and it's named FILE" do
+          class TestCommandWithFILEArgument < CommandKit::Command
+
+            command_name 'test'
+
+            option :foo, desc: 'Foo option'
+
+            argument :bar, usage: 'FILE', desc: 'Bar option'
+
+          end
+
+          let(:command_class) { TestCommandWithFILEArgument }
+
+          it "must add '<file>' to the command's completion rule" do
+            expect(subject.completion_rules_for(command_class)).to eq(
+              {
+                "test" => %w[--foo <file>]
+              }
+            )
+          end
+        end
+
+        context "and it's named DIR" do
+          class TestCommandWithDIRArgument < CommandKit::Command
+
+            command_name 'test'
+
+            option :foo, desc: 'Foo option'
+
+            argument :bar, usage: 'DIR', desc: 'Bar option'
+
+          end
+
+          let(:command_class) { TestCommandWithDIRArgument }
+
+          it "must add '<directory>' to the command's completion rule" do
+            expect(subject.completion_rules_for(command_class)).to eq(
+              {
+                "test" => %w[--foo <directory>]
+              }
+            )
+          end
+        end
+
+        context "and it's named HOST" do
+          class TestCommandWithHOSTArgument < CommandKit::Command
+
+            command_name 'test'
+
+            option :foo, desc: 'Foo option'
+
+            argument :bar, usage: 'HOST', desc: 'Bar option'
+
+          end
+
+          let(:command_class) { TestCommandWithHOSTArgument }
+
+          it "must add '<hostname>' to the command's completion rule" do
+            expect(subject.completion_rules_for(command_class)).to eq(
+              {
+                "test" => %w[--foo <hostname>]
+              }
+            )
+          end
+        end
+
+        context "and it's named USER" do
+          class TestCommandWithUSERArgument < CommandKit::Command
+
+            command_name 'test'
+
+            option :foo, desc: 'Foo option'
+
+            argument :bar, usage: 'USER', desc: 'Bar option'
+
+          end
+
+          let(:command_class) { TestCommandWithUSERArgument }
+
+          it "must add '<user>' to the command's completion rule" do
+            expect(subject.completion_rules_for(command_class)).to eq(
+              {
+                "test" => %w[--foo <user>]
+              }
+            )
+          end
+        end
+
+        context "but it's named something else" do
+          class TestCommandWithArgument < CommandKit::Command
+
+            command_name 'test'
+
+            option :foo, desc: 'Foo option'
+
+            argument :bar, usage: 'BAR', desc: 'Bar option'
+
+          end
+
+          let(:command_class) { TestCommandWithArgument }
+
+          it "must not add additional suggestions to the command's completion rule" do
+            expect(subject.completion_rules_for(command_class)).to eq(
+              {
+                "test" => %w[--foo]
+              }
+            )
+          end
+        end
+      end
+
+      context "but has no arguments" do
+        class TestCommandWithoutArguments < CommandKit::Command
+
+          command_name 'test'
+
+          option :foo, desc: 'Foo option'
+
+        end
+
+        let(:command_class) { TestCommandWithoutArguments }
+
+        it "must not add additional suggestions" do
+          expect(subject.completion_rules_for(command_class)).to eq(
+            {
+              "test" => %w[--foo]
+            }
+          )
+        end
+      end
+    end
+
     context "when the command class includes CommandKit::Commands" do
       class TestCommandWithSubCommands < CommandKit::Command
         include CommandKit::Commands

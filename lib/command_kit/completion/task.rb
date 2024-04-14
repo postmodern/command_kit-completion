@@ -170,7 +170,7 @@ module CommandKit
           end
         end
 
-        # sub-commands
+        # sub-commands / first argument
         if command_class.include?(CommandKit::Commands)
           command_class.commands.each do |subcommand_name,subcommand|
             # add all sub-command names
@@ -183,6 +183,13 @@ module CommandKit
           end
 
           completions[command_name].concat(command_class.command_aliases.keys)
+        elsif command_class.include?(CommandKit::Arguments)
+          if (argument = command_class.arguments.values.first)
+            if (suggestion = suggestion_for_argument(argument.usage))
+              # add a suggestion for the first argument
+              completions[command_name] << suggestion
+            end
+          end
         end
 
         # filter out any command's that have no options/sub-commands
