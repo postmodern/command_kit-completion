@@ -110,13 +110,25 @@ module CommandKit
         Object.const_get(@class_name)
       end
 
-      # Mapping of command usage strings to completely `<keyword>`s.
-      USAGE_COMPLETIONS = {
-        'FILE' => '<file>',
-        'DIR'  => '<directory>',
-        'HOST' => '<hostname>',
-        'USER' => '<user>'
-      }
+      #
+      # Maps the argument name strings to completely suggestion `<keyword>`s.
+      #
+      # @param [String] arg
+      #   The argument name.
+      #
+      # @return [String, nil]
+      #   The suggestion keyword for the argument name.
+      #
+      # @since 0.2.0
+      #
+      def suggestion_for_argument(arg)
+        case arg
+        when 'FILE' then '<file>'
+        when 'DIR'  then '<directory>'
+        when 'HOST' then '<hostname>'
+        when 'USER' then '<user>'
+        end
+      end
 
       #
       # Generates the completion rules for the given [command_kit] command
@@ -141,11 +153,11 @@ module CommandKit
             completions[command_name] << option.long
 
             if option.value
-              if (option_value_completion = USAGE_COMPLETIONS[option.value.usage])
+              if (suggestion = suggestion_for_argument(option.value.usage))
                 # add a special rule if the option's value USAGE maps to a
                 # 'completely' completion keyword (ex: `FILE` -> `<file>`).
                 completions["#{command_name}*#{option.long}"] = [
-                  option_value_completion
+                  suggestion
                 ]
               end
             end

@@ -435,6 +435,32 @@ describe CommandKit::Completion::Task do
     end
   end
 
+  describe "#suggestion_for_argument" do
+    context "when given 'FILE'" do
+      it "must return '<file>'" do
+        expect(subject.suggestion_for_argument('FILE')).to eq('<file>')
+      end
+    end
+
+    context "when given 'DIR'" do
+      it "must return '<directory>'" do
+        expect(subject.suggestion_for_argument('DIR')).to eq('<directory>')
+      end
+    end
+
+    context "when given 'HOST'" do
+      it "must return '<hostname>'" do
+        expect(subject.suggestion_for_argument('HOST')).to eq('<hostname>')
+      end
+    end
+
+    context "when given 'USER'" do
+      it "must return '<user>'" do
+        expect(subject.suggestion_for_argument('USER')).to eq('<user>')
+      end
+    end
+  end
+
   describe "#completion_rules" do
     it "must load the class from #class_file and return the generated completion rules for it" do
       expect(subject.completion_rules).to eq(
