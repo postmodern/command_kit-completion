@@ -259,7 +259,7 @@ describe CommandKit::Completion::Task do
       it "must add completion rules for the other commands" do
         expect(subject.completion_rules_for(command_class)).to eq(
           {
-            "test"     => %w[--global-option help foo bar],
+            "test"     => %w[--global-option -g help foo bar],
             "test foo" => %w[--foo-opt1 --foo-opt2],
             "test bar" => %w[--bar-opt1 --bar-opt2]
           }
@@ -309,7 +309,7 @@ describe CommandKit::Completion::Task do
         it "must include the command aliases in the completion rules" do
           expect(subject.completion_rules_for(command_class)).to eq(
             {
-              "test"     => %w[--global-option help foo bar foo2 bar2],
+              "test"     => %w[--global-option -g help foo bar foo2 bar2],
               "test foo" => %w[--foo-opt1 --foo-opt2],
               "test bar" => %w[--bar-opt1 --bar-opt2]
             }
@@ -349,7 +349,7 @@ describe CommandKit::Completion::Task do
         it "must omit the command from the completion rules" do
           expect(subject.completion_rules_for(command_class)).to eq(
             {
-              "test"     => %w[--global-option help foo bar],
+              "test"     => %w[--global-option -g help foo bar],
               "test foo" => %w[--foo-opt1 --foo-opt2]
             }
           )
@@ -423,7 +423,7 @@ describe CommandKit::Completion::Task do
         it "must recursively include completion rules for the sub-sub-commands" do
           expect(subject.completion_rules_for(command_class)).to eq(
             {
-              "test"     => %w[--global-option help foo bar],
+              "test"     => %w[--global-option -g help foo bar],
               "test foo" => %w[--foo-opt1 --foo-opt2],
               "test bar" => %w[--bar-opt1 --bar-opt2 help baz qux],
               "test bar baz" => %w[--baz-opt1 --baz-opt2],
@@ -489,9 +489,9 @@ describe CommandKit::Completion::Task do
     it "must load the class from #class_file and return the generated completion rules for it" do
       expect(subject.completion_rules).to eq(
         {
-          "foo" => %w[--config-file help config list update ls up],
+          "foo" => %w[--config-file -C help config list update ls up],
           "foo config" => %w[help get set],
-          "foo update" => %w[--quiet],
+          "foo update" => %w[--quiet -q],
           "foo*--config-file" => %w[<file>],
           "foo*-C" => %w[<file>]
         }
@@ -513,9 +513,9 @@ describe CommandKit::Completion::Task do
       it "must merge the additional completion rules with the generated ones" do
         expect(subject.completion_rules).to eq(
           {
-            "foo" => %w[--config-file help config list update ls up],
+            "foo" => %w[--config-file -C help config list update ls up],
             "foo config" => %w[help get set],
-            "foo update" => ['--quiet', '$(foo list)'],
+            "foo update" => ['--quiet', '-q', '$(foo list)'],
             "foo*--config-file" => %w[<file>],
             "foo*-C" => %w[<file>]
           }

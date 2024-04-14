@@ -151,6 +151,7 @@ module CommandKit
           # add all long option flags
           command_class.options.each_value do |option|
             completions[command_name] << option.long
+            completions[command_name] << option.short if option.short
 
             if option.value
               if (suggestion = suggestion_for_argument(option.value.usage))
