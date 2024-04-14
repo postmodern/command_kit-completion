@@ -154,11 +154,16 @@ module CommandKit
 
             if option.value
               if (suggestion = suggestion_for_argument(option.value.usage))
+                command_pattern = "#{command_name}*#{option.long}"
+
                 # add a special rule if the option's value USAGE maps to a
                 # 'completely' completion keyword (ex: `FILE` -> `<file>`).
-                completions["#{command_name}*#{option.long}"] = [
-                  suggestion
-                ]
+                completions[command_pattern] = [suggestion]
+
+                if option.short
+                  # also add another rule with the option's short flag
+                  completions["#{command_name}*#{option.short}"] = [suggestion]
+                end
               end
             end
           end

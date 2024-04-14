@@ -492,7 +492,8 @@ describe CommandKit::Completion::Task do
           "foo" => %w[--config-file help config list update ls up],
           "foo config" => %w[help get set],
           "foo update" => %w[--quiet],
-          "foo*--config-file" => %w[<file>]
+          "foo*--config-file" => %w[<file>],
+          "foo*-C" => %w[<file>]
         }
       )
     end
@@ -515,7 +516,8 @@ describe CommandKit::Completion::Task do
             "foo" => %w[--config-file help config list update ls up],
             "foo config" => %w[help get set],
             "foo update" => ['--quiet', '$(foo list)'],
-            "foo*--config-file" => %w[<file>]
+            "foo*--config-file" => %w[<file>],
+            "foo*-C" => %w[<file>]
           }
         )
       end
