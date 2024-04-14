@@ -123,10 +123,10 @@ module CommandKit
       #
       def suggestion_for_argument(arg)
         case arg
-        when 'FILE' then '<file>'
-        when 'DIR'  then '<directory>'
-        when 'HOST' then '<hostname>'
-        when 'USER' then '<user>'
+        when /\AFILE\z|_FILE\z/ then '<file>'
+        when /\ADIR\z|_DIR\z/   then '<directory>'
+        when /\AHOST\z|_HOST\z/ then '<hostname>'
+        when /\AUSER\z|_USER\z/ then '<user>'
         end
       end
 

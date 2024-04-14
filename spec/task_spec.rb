@@ -442,9 +442,21 @@ describe CommandKit::Completion::Task do
       end
     end
 
+    context "when the string ends with '_FILE'" do
+      it "must return '<file>'" do
+        expect(subject.suggestion_for_argument('FOO_FILE')).to eq('<file>')
+      end
+    end
+
     context "when given 'DIR'" do
       it "must return '<directory>'" do
         expect(subject.suggestion_for_argument('DIR')).to eq('<directory>')
+      end
+    end
+
+    context "when the string ends with '_DIR'" do
+      it "must return '<directory>'" do
+        expect(subject.suggestion_for_argument('FOO_DIR')).to eq('<directory>')
       end
     end
 
@@ -454,9 +466,21 @@ describe CommandKit::Completion::Task do
       end
     end
 
+    context "when the string ends with '_HOST'" do
+      it "must return '<hostname>'" do
+        expect(subject.suggestion_for_argument('FOO_HOST')).to eq('<hostname>')
+      end
+    end
+
     context "when given 'USER'" do
       it "must return '<user>'" do
         expect(subject.suggestion_for_argument('USER')).to eq('<user>')
+      end
+    end
+
+    context "when the string ends with '_USER'" do
+      it "must return '<user>'" do
+        expect(subject.suggestion_for_argument('FOO_USER')).to eq('<user>')
       end
     end
   end
