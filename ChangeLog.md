@@ -1,3 +1,13 @@
+### 0.2.0 / 2024-04-26
+
+* Also generate completion rules for option's short flags.
+* Also generate `<file>`, `<directory>`, `<hostname>`, and `<user>` completion 
+  rules for options who's value is named `FILE`, `DIR`, `HOST`, `USER`
+  (or ends in `_FILE`, `_DIR`, `_HOST`, `_USER`), respectively.
+* Also generate `<file>`, `<directory>`, `<hostname>`, and `<user>` completion 
+  rules for the command's first argument if it's named `FILE`, `DIR`, `HOST`,
+  `USER` (or ends in `_FILE`, `_DIR`, `_HOST`, `_USER`), respectively.
+
 ### 0.1.2 / 2023-12-18
 
 * Fix namespace conflict between `FileUtils` and `CommandKit::FileUtils`.
