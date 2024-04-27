@@ -69,6 +69,42 @@ describe CommandKit::Completion::Task do
     end
   end
 
+  describe "#load_input_file" do
+    let(:input_file) { File.join(fixtures_dir,'additional_rules.yml') }
+
+    subject do
+      described_class.new(
+        class_file:  class_file,
+        class_name:  class_name,
+        input_file:  input_file,
+        output_file: output_file
+      )
+    end
+
+    it "must load the YAML from the input file" do
+      expect(subject.load_input_file).to eq(
+        {
+          'foo update' => ['$(foo list)']
+        }
+      )
+    end
+
+    context "when the input file contains YAML aliases" do
+      let(:input_file) do
+        File.join(fixtures_dir,'additional_rules_with_aliases.yml')
+      end
+
+      it "must support parsing YAML aliases" do
+        expect(subject.load_input_file).to eq(
+          {
+            'foo update' => ['$(foo list)'],
+            'foo up'=> ['$(foo list)']
+          }
+        )
+      end
+    end
+  end
+
   describe "#completion_rules_for" do
     context "when given a simple CommandKit::Command class" do
       class TestBasicCommand < CommandKit::Command

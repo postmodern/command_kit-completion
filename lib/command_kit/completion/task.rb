@@ -111,6 +111,16 @@ module CommandKit
       end
 
       #
+      # Loads the completion rules from the {#input_file}.
+      #
+      # @return [Hash]
+      #   The completion rules from the {#input_file}.
+      #
+      def load_input_file
+        YAML.load_file(@input_file, aliases: true)
+      end
+
+      #
       # Maps the argument name strings to completely suggestion `<keyword>`s.
       #
       # @param [String] arg
@@ -211,7 +221,7 @@ module CommandKit
 
         if @input_file
           # load the additional rules from the input file
-          additional_completion_rules = YAML.load_file(@input_file)
+          additional_completion_rules = load_input_file
 
           # merge the additional completion rules
           additional_completion_rules.each do |command_string,completions|

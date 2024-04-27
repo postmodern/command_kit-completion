@@ -1,0 +1,4 @@
+---
+foo update: &update
+  - $(foo list)
+foo up: *update
