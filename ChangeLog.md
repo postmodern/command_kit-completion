@@ -1,3 +1,7 @@
+### 0.2.1 / 2024-04-29
+
+* Support loading YAML input files that contain YAML aliases.
+
 ### 0.2.0 / 2024-04-26
 
 * Also generate completion rules for option's short flags.
