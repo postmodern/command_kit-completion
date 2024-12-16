@@ -158,19 +158,19 @@ module CommandKit
       # @param [String] arg
       #   The argument name.
       #
-      # @return [String, nil]
+      # @return [Array<String>, nil]
       #   The suggestion keyword for the argument name.
       #
-      # @since 0.2.0
+      # @since 0.3.0
       #
       # @api private
       #
-      def suggestion_for_argument(arg)
+      def suggestions_for_argument(arg)
         case arg
-        when /\AFILE\z|_FILE\z/ then '<file>'
-        when /\ADIR\z|_DIR\z/   then '<directory>'
-        when /\AHOST\z|_HOST\z/ then '<hostname>'
-        when /\AUSER\z|_USER\z/ then '<user>'
+        when /\AFILE\z|_FILE\z/ then %w[<file>]
+        when /\ADIR\z|_DIR\z/   then %w[<directory>]
+        when /\AHOST\z|_HOST\z/ then %w[<hostname>]
+        when /\AUSER\z|_USER\z/ then %w[<user>]
         end
       end
 
@@ -200,16 +200,16 @@ module CommandKit
             completions[command_name] << option.short if option.short
 
             if option.value
-              if (suggestion = suggestion_for_argument(option.value.usage))
+              if (suggestions = suggestions_for_argument(option.value.usage))
                 command_pattern = "#{command_name}*#{option.long}"
 
                 # add a special rule if the option's value USAGE maps to a
                 # 'completely' completion keyword (ex: `FILE` -> `<file>`).
-                completions[command_pattern] = [suggestion]
+                completions[command_pattern] = suggestions
 
                 if option.short
                   # also add another rule with the option's short flag
-                  completions["#{command_name}*#{option.short}"] = [suggestion]
+                  completions["#{command_name}*#{option.short}"] = suggestions
                 end
               end
             end
@@ -231,9 +231,9 @@ module CommandKit
           completions[command_name].concat(command_class.command_aliases.keys)
         elsif command_class.include?(CommandKit::Arguments)
           if (argument = command_class.arguments.values.first)
-            if (suggestion = suggestion_for_argument(argument.usage))
+            if (suggestions = suggestions_for_argument(argument.usage))
               # add a suggestion for the first argument
-              completions[command_name] << suggestion
+              completions[command_name].concat(suggestions)
             end
           end
         end

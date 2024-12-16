@@ -605,52 +605,68 @@ describe CommandKit::Completion::Task do
     end
   end
 
-  describe "#suggestion_for_argument" do
+  describe "#suggestions_for_argument" do
     context "when given 'FILE'" do
-      it "must return '<file>'" do
-        expect(subject.suggestion_for_argument('FILE')).to eq('<file>')
+      it "must return ['<file>']" do
+        expect(subject.suggestions_for_argument('FILE')).to eq(
+          %w[<file>]
+        )
       end
     end
 
     context "when the string ends with '_FILE'" do
-      it "must return '<file>'" do
-        expect(subject.suggestion_for_argument('FOO_FILE')).to eq('<file>')
+      it "must return ['<file>']" do
+        expect(subject.suggestions_for_argument('FOO_FILE')).to eq(
+          %w[<file>]
+        )
       end
     end
 
     context "when given 'DIR'" do
-      it "must return '<directory>'" do
-        expect(subject.suggestion_for_argument('DIR')).to eq('<directory>')
+      it "must return ['<directory>']" do
+        expect(subject.suggestions_for_argument('DIR')).to eq(
+          %w[<directory>]
+        )
       end
     end
 
     context "when the string ends with '_DIR'" do
-      it "must return '<directory>'" do
-        expect(subject.suggestion_for_argument('FOO_DIR')).to eq('<directory>')
+      it "must return ['<directory>']" do
+        expect(subject.suggestions_for_argument('FOO_DIR')).to eq(
+          %w[<directory>]
+        )
       end
     end
 
     context "when given 'HOST'" do
-      it "must return '<hostname>'" do
-        expect(subject.suggestion_for_argument('HOST')).to eq('<hostname>')
+      it "must return ['<hostname>']" do
+        expect(subject.suggestions_for_argument('HOST')).to eq(
+          %w[<hostname>]
+        )
       end
     end
 
     context "when the string ends with '_HOST'" do
-      it "must return '<hostname>'" do
-        expect(subject.suggestion_for_argument('FOO_HOST')).to eq('<hostname>')
+      it "must return ['<hostname>']" do
+        expect(subject.suggestions_for_argument('FOO_HOST')).to eq(
+          %w[<hostname>]
+        )
       end
     end
 
     context "when given 'USER'" do
-      it "must return '<user>'" do
-        expect(subject.suggestion_for_argument('USER')).to eq('<user>')
+      it "must return ['<user>']" do
+        expect(subject.suggestions_for_argument('USER')).to eq(
+          %w[<user>]
+        )
       end
     end
 
     context "when the string ends with '_USER'" do
-      it "must return '<user>'" do
-        expect(subject.suggestion_for_argument('FOO_USER')).to eq('<user>')
+      it "must return ['<user>']" do
+        expect(subject.suggestions_for_argument('FOO_USER')).to eq(
+          %w[<user>]
+        )
       end
     end
   end
