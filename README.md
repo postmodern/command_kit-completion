@@ -45,7 +45,7 @@ rake command_kit:completion
 
 ## License
 
-Copyright (c) 2023 Hal Brodigan
+Copyright (c) 2023-2024 Hal Brodigan
 
 See {file:LICENSE.txt} for details.
 
