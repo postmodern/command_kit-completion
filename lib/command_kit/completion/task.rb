@@ -10,6 +10,18 @@ require 'fileutils'
 
 module CommandKit
   module Completion
+    #
+    # `command_kit-completion` rake task.
+    #
+    # ## Example
+    #
+    #     require 'command_kit/completion/task'
+    #     CommandKit::Completion::Task.new(
+    #       class_file:  './examples/cli',
+    #       class_name:  'Foo::CLI',
+    #       output_file: 'completion.sh'
+    #     )
+    #
     class Task < Rake::TaskLib
 
       # The file that the command_kit CLI is defined in.
