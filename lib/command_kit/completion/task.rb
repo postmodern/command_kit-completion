@@ -27,32 +27,44 @@ module CommandKit
       # The file that the command_kit CLI is defined in.
       #
       # @return [String]
+      #
+      # @api private
       attr_reader :class_file
 
       # The class name of the command_kit CLI.
       #
       # @return [String]
+      #
+      # @api private
       attr_reader :class_name
 
       # The output file to write the shell completions to.
       #
       # @return [String]
+      #
+      # @api private
       attr_reader :output_file
 
       # Optional input YAML file to read additional shell completions from.
       #
       # @return [String, nil]
+      #
+      # @api private
       attr_reader :input_file
 
       # Specifies whether the shell completion logic should be wrapped in a
       # function.
       #
       # @return [Boolean]
+      #
+      # @api private
       attr_reader :wrap_function
 
       # Optional function name to wrap the shell completions within.
       #
       # @return [String, nil]
+      #
+      # @api private
       attr_reader :function_name
 
       #
@@ -73,6 +85,8 @@ module CommandKit
       #
       #   [completely examples]: https://github.com/DannyBen/completely?tab=readme-ov-file#using-the-completely-command-line
       #
+      # @api public
+      #
       def initialize(class_file: ,
                      class_name: ,
                      output_file: ,
@@ -92,6 +106,8 @@ module CommandKit
 
       #
       # Defines the `command_kit:completion` task.
+      #
+      # @api private
       #
       def define
         task(@output_file) do
@@ -117,6 +133,8 @@ module CommandKit
       #
       # @return [Class]
       #
+      # @api private
+      #
       def load_class
         require(@class_file)
         Object.const_get(@class_name)
@@ -127,6 +145,8 @@ module CommandKit
       #
       # @return [Hash]
       #   The completion rules from the {#input_file}.
+      #
+      # @api private
       #
       def load_input_file
         YAML.load_file(@input_file, aliases: true)
@@ -142,6 +162,8 @@ module CommandKit
       #   The suggestion keyword for the argument name.
       #
       # @since 0.2.0
+      #
+      # @api private
       #
       def suggestion_for_argument(arg)
         case arg
@@ -163,6 +185,8 @@ module CommandKit
       #
       # @return [Hash{String => Array<String>}]
       #   The completion rules for the command class and any sub-commands.
+      #
+      # @api private
       #
       def completion_rules_for(command_class)
         command_name = command_class.command_name
@@ -227,6 +251,8 @@ module CommandKit
       # in any additional completion rules from the input file.
       #
       # @return [Hash{String => Array<String>}]
+      #
+      # @api private
       #
       def completion_rules
         completion_rules = completion_rules_for(load_class)
