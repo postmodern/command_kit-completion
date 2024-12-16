@@ -1,3 +1,9 @@
+### 0.3.0 / 2024-12-16
+
+* Generate `<file>` and `<directory>` completion rules for arguments named
+  `PATH` or ending in `_PATH`, so they can tab complete both files and
+  directories.
+
 ### 0.2.1 / 2024-04-29
 
 * Support loading YAML input files that contain YAML aliases.
