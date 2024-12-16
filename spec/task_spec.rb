@@ -638,6 +638,28 @@ describe CommandKit::Completion::Task do
       end
     end
 
+    context "when given 'PATH'" do
+      it "must return ['<file>', '<directory>']" do
+        expect(subject.suggestions_for_argument('PATH')).to eq(
+          %w[
+            <file>
+            <directory>
+          ]
+        )
+      end
+    end
+
+    context "when the string ends with '_PATH'" do
+      it "must return ['<file>', '<directory>']" do
+        expect(subject.suggestions_for_argument('FOO_PATH')).to eq(
+          %w[
+            <file>
+            <directory>
+          ]
+        )
+      end
+    end
+
     context "when given 'HOST'" do
       it "must return ['<hostname>']" do
         expect(subject.suggestions_for_argument('HOST')).to eq(

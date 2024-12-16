@@ -169,6 +169,7 @@ module CommandKit
         case arg
         when /\AFILE\z|_FILE\z/ then %w[<file>]
         when /\ADIR\z|_DIR\z/   then %w[<directory>]
+        when /\APATH\z|_PATH\z/ then %w[<file> <directory>]
         when /\AHOST\z|_HOST\z/ then %w[<hostname>]
         when /\AUSER\z|_USER\z/ then %w[<user>]
         end
