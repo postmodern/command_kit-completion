@@ -24,4 +24,4 @@ dependencies:
   completely: ~> 0.6
 
 development_dependencies:
-  bundler: ~> 2.0
+  bundler: ">= 2.0.0"
